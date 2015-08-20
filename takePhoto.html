@@ -1,0 +1,119 @@
+<html>
+	<head>
+		<title>Bilita</title>
+        <!--implements jQuery-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+       
+        <!--links the library js file-->
+        <script type="text/javascript" src="library.js"></script>
+        <!--links the photoJs file-->
+        <script type="text/javascript" src="photoJs.js"></script>
+        <!--links the original js file-->
+        <script type="text/javascript" src="js.js"></script>
+        
+
+        <!--Bootstrap-->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+        <!--links the css-->
+		<link rel="stylesheet" type="css/text" href="style.css"/>
+		
+		<meta charset="utf-8">
+  		<link rel="stylesheet" href="style.css">
+  		<script src = "https://plus.google.com/js/client:platform.js" async defer></script>
+
+	</head>
+	<!--menu-->
+	<body>
+		<div class="dropdown">
+		    <a data-target="#" id = "menu" href="page.html" data-toggle="dropdown" class="dropdown-toggle">Menu<b class="caret"></b></a>
+		    <ul class="dropdown-menu">
+		        <button type = "button" destination = "final.html">Home</button>
+		        <br></br>
+		        <button type = "button" destination = "library.html">Library</button>
+		        <br></br>
+		        <button type = "button" destination = "takePhoto.html"><li>Take Photo</button>
+		        <br></br>
+		        <button type = "button" destination ="accessGallery.html">Access Gallery</button>
+		        <br></br>
+		        <button type = "button" destination = "help.html">Quick Help</li>	        
+		    </ul>   
+		</div>
+
+		<!--THIS PAGE WILL ALLOW THE USER TO 
+		TAKE A PICTURE... BUT IT DOES NOT FUNCTION PROPERLY RIGHT NOW-->
+
+		<button type= "button" onclick="saveFunction()">Save</button>
+
+
+		<!--<input type="file" accept="image/*;capture=camera">-->
+
+		<device type="media" onchange="update(this.data)"></device>
+		<video autoplay></video>
+		<script>
+		  function update(stream) {
+		    document.querySelector('video').src = stream.url;
+		  }
+		</script>
+
+
+		<script>
+		  var errorCallback = function(e) {
+		    console.log('Reeeejected!', e);
+		  };
+
+		  // Not showing vendor prefixes.
+		  navigator.getUserMedia({video: true, audio: true}, function(localMediaStream) {
+		    var video = document.querySelector('video');
+		    video.src = window.URL.createObjectURL(localMediaStream);
+
+		    // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
+		    // See crbug.com/110938.
+		    video.onloadedmetadata = function(e) {
+		      // Ready to go. Do some stuff.
+		    };
+		  }, errorCallback);
+		</script>
+
+		<!--takes a screenshot-->
+			<video autoplay></video>
+			<img src="">
+			<canvas style="display:none;"></canvas>
+
+			<script>
+				var video = document.querySelector('video');
+				var canvas = document.querySelector('canvas');
+				var ctx = canvas.getContext('2d');
+				var localMediaStream = null;
+
+				function snapshot() {
+					if (localMediaStream) {
+				    ctx.drawImage(video, 0, 0);
+				    // "image/webp" works in Chrome.
+				    // Other browsers will fall back to image/png.
+				      document.querySelector('img').src = canvas.toDataURL('image/webp');
+				    }
+				  }
+
+				  video.addEventListener('click', snapshot, false);
+
+				  // Not showing vendor prefixes or code that works cross-browser.
+				  navigator.getUserMedia({video: true}, function(stream) {
+				    video.src = window.URL.createObjectURL(stream);
+				    localMediaStream = stream;
+				  }, errorCallback);
+			</script>
+
+	</body>
+</html>	

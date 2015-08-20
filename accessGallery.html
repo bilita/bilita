@@ -1,0 +1,104 @@
+<html>
+	<head>
+		<title>Bilita</title>
+        <!--implements jQuery-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+        <!--links the js--> 
+		<script type = "text/javascript" src = "tabletop.js"></script>
+        <script type="text/javascript" src="js.js"></script>
+		<meta charset="UTF-8">
+        <!--links the css-->
+        <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+        
+		<link rel="stylesheet" type="css/text" href="style.css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!--Preview images-->
+        <!--links the css-->
+		<link rel="stylesheet" type="css/text" href="style.css"/>
+
+
+		<!--<script type="text/javascript">
+		//   window.onload = function() { init() };
+
+        <!--links the js-->    
+        <script type="text/javascript" src="js.js"></script>
+		<meta charset="UTF-8">
+        
+
+
+		<!--Bootstrap-->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+        <!--links the css-->
+		<link rel="stylesheet" type="css/text" href="style.css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src = "https://plus.google.com/js/client:platform.js" async defer></script>
+
+	</head>
+	<body>
+		<div class="dropdown">
+		    <a data-target="#" id = "menu" href="page.html" data-toggle="dropdown" class="dropdown-toggle">Menu<b class="caret"></b></a>
+		    <ul class="dropdown-menu">
+		        <button type = "button" destination = "final.html">Home</button>
+		        <br></br>
+		        <button type = "button" destination = "library.html">Library</button>
+		        <br></br>
+		        <button type = "button" destination = "takePhoto.html"><li>Take Photo</button>
+		        <br></br>
+		        <button type = "button" destination ="accessGallery.html">Access Gallery</button>
+		        <br></br>
+		        <button type = "button" destination = "help.html">Quick Help</li>	        
+		    </ul>   
+		</div>
+
+
+		<h3>
+			<div class="main">
+			<?php include 'ajax_php_file.php';?>
+			<h1>Image Upload</h1><br/>
+			<hr>
+			<form id="uploadimage" action="" method="post" enctype="multipart/form-data">
+			<div id="image_preview"><img id="previewing" src="noimage.png" /></div>
+			<hr id="line">
+			<div id="selectImage">
+				<label>Select Your Image</label><br/>
+				<input type="file" name="file" id="file" required />
+				<!--<input type="submit" value="Upload" class="submit" />-->
+			</div>
+			</form>
+			</div>
+			<div id="message"></div>
+		</h3>
+		<h4> Date </h4>
+		<input type="text" id="date" value="" placeholder= "Enter the date (mm/dd/yyyy)"/>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$("#date").keyup(function(){
+						dates = $(this).val();
+					});
+				})
+			</script>
+		<h5> Description </h5>
+		<input type="text" id="story" value = "" placeholder = "Tell your story here" />
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$("#story").keyup(function(){
+						stories = $(this).val();
+					});
+				})
+			</script>
+		</script>
+		<script type="text/javascript" src="library.js"></script>
+		<button type= "button" onclick="saveFunction()"> Save </button>
+	</body>
+</html>	
